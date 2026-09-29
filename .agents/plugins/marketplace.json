@@ -1,0 +1,20 @@
+{
+  "name": "codex-memory",
+  "interface": {
+    "displayName": "Codex Memory"
+  },
+  "plugins": [
+    {
+      "name": "codex-memory",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-memory"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

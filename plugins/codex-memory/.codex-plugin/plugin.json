@@ -1,0 +1,19 @@
+{
+  "name": "codex-memory",
+  "version": "0.1.0",
+  "description": "Search and maintain a local memory store and reference knowledge bases from Codex.",
+  "author": {
+    "name": "Mathew CF"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Memory",
+    "shortDescription": "Search and save durable knowledge across sessions.",
+    "longDescription": "Adds memory and knowledge-base tools backed by a local markdown store, plus search over previous Codex sessions.",
+    "developerName": "Mathew CF",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": "Search my memory for context on this project."
+  },
+  "mcpServers": "./.mcp.json"
+}
