@@ -1,8 +1,10 @@
 {
   "mcpServers": {
     "memory": {
-      "command": "bunx",
-      "args": ["--bun", "-p", "@mathew-cf/opencode-memory", "codex-memory-mcp"]
+      "command": "bun",
+      "args": ["./server/index.js"],
+      "cwd": ".",
+      "env": { "CODEX_MEMORY_DIR": "~/codex-memory" }
     }
   }
 }

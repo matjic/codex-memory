@@ -1,0 +1,8 @@
+{
+  "name": "codex-memory",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun build plugins/codex-memory/server/server.ts --target=node --minify --outfile plugins/codex-memory/server/index.js"
+  }
+}

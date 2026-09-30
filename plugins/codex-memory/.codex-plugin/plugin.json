@@ -1,6 +1,6 @@
 {
   "name": "codex-memory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Search and maintain a local memory store and reference knowledge bases from Codex.",
   "author": {
     "name": "Mathew CF"

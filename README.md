@@ -1,6 +1,6 @@
 # Codex Memory
 
-A local [Codex plugin](https://developers.openai.com/plugins/build/plugins) for searching and maintaining a markdown memory store across sessions. It packages a skill and an MCP server configuration. The MCP server comes from [`@mathew-cf/opencode-memory`](https://github.com/mathew-cf/opencode-memory), so the Codex and OpenCode integrations share the same search and storage code.
+A local [Codex plugin](https://developers.openai.com/plugins/build/plugins) for searching and maintaining a markdown memory store across sessions. It packages a skill and a self-contained TypeScript MCP server.
 
 ## Tools
 
@@ -11,9 +11,8 @@ A local [Codex plugin](https://developers.openai.com/plugins/build/plugins) for 
 ## Requirements
 
 - [Bun](https://bun.sh/) on `PATH`
-- A published `@mathew-cf/opencode-memory` version containing the `codex-memory-mcp` executable. The source is in the upstream repository; the currently published 2.1.0 package does not contain it yet.
 
-Initialize the shared store once with `bunx @mathew-cf/opencode-memory init --skip-skills`. The default location is `~/opencode-memory/`; set `OPENCODE_MEMORY_DIR` to use another directory.
+Call the plugin's `memory_setup` tool once after installation. It creates `~/codex-memory/` as a Git-backed store, adds the category folders and `rag.toml`, and downloads the embedding model by default. The operation is safe to repeat. Set `CODEX_MEMORY_DIR` in the MCP configuration to use another directory.
 
 ## Install
 
@@ -23,13 +22,22 @@ Add this repository as a Codex marketplace:
 codex plugin marketplace add matjic/codex-memory
 ```
 
-Then install **Codex Memory** from that marketplace in the Codex app. Start a new session after installation. The plugin launches its MCP server with `bunx` and loads the bundled `codex-memory` skill.
-
-For development before the upstream package is published, build the upstream checkout with `bun run build` and configure a local MCP server command as `bun <absolute-path-to-upstream>/dist/codex-mcp.js`.
+Then install **Codex Memory** from that marketplace in the Codex app. Start a new session after installation. The plugin launches its bundled TypeScript MCP server with Bun and loads the `codex-memory` skill.
 
 ## Data
 
-Memory files stay in the local directory. `memory_save` commits changes to that directory's Git repository and starts a local `rag` index update. Knowledge bases are read-only and configured in `~/.config/opencode-memory/config.toml`; see the [upstream documentation](https://github.com/mathew-cf/opencode-memory#knowledge-bases).
+Memory files stay in `~/codex-memory/` by default. `memory_save` commits changes to that directory's Git repository and starts a local `rag` index update.
+
+Optional read-only knowledge bases are configured in `~/.config/codex-memory/config.toml`:
+
+```toml
+[[knowledge_base]]
+name = "reference"
+path = "~/knowledge/reference"
+default = true
+```
+
+Each knowledge-base directory contains a `rag.toml` with its indexed source definitions. Set `CODEX_MEMORY_CONFIG` to use another configuration file.
 
 ## License
 
